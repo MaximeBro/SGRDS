@@ -7,4 +7,4 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 // Old : CV
-// $routes->get('/', 'CV\MainController::index');
+$routes->get('/', 'MainController::index');
