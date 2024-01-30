@@ -17,3 +17,8 @@
 *.xhtml
 
 # End of https://www.toptal.com/developers/gitignore/api/web
+writable/
+
+.idea/
+
+phpunit.xml.dist

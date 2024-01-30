@@ -28,7 +28,7 @@ class Database extends Config
         'DSN'          => '',
         'hostname'     => 'localhost',
         'username'     => 'postgres',
-        'password'     => '',
+        'password'     => '5555',
         'database'     => 'CI4',
         'DBDriver'     => 'Postgre',
         'DBPrefix'     => '',

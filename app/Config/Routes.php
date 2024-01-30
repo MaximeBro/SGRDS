@@ -7,4 +7,5 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 $routes->get('/', 'LoginController::index');
-$routes->get('/', 'MainController::index');
+$routes->post('/signin', 'LoginController::loginAuth');
+$routes->get('/accueil', 'PlanningController::index');

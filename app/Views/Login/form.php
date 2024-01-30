@@ -1,41 +1,78 @@
-<section class="vh-100">
-    <div class="container-fluid h-100 py-5">
-        <div class="row d-flex justify-content-center align-items-center">
+<!-- Section: Design Block -->
+<section class="text-center">
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="
+        background-image: url('https://www-iut.univ-lehavre.fr/wp-content/uploads/2020/02/cropped-DSC_0279-1-1.jpg');
+        height: 300px;"></div>
+    <!-- Background image -->
 
-            <div class="col-md-3 col-sm-0"></div>
-            <div class="col-md-6 col-sm-12 text-black">
-                <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center">
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: -90px; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px);">
+        <div class="card-body py-5 px-md-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-0 col-lg-3"></div>
+                <div class="col-sm-12 col-lg-6">
+                    <h2 class="fw-bold mb-5">Connexion</h2>
+                    <?php echo form_open('signin'); ?>
 
-                        <div class="mb-5 fs-2" style="font-size: 2rem;">
-                            <i class="fas fa-door-open mr-1"></i>
-                            Connexion
+                        <!-- Email input -->
+                        <div class="form-floating mb-4" data-mdb-input-init>
+                            <?php $params = array('class' => 'form-control', 'value' => set_value('email'), 'required' => true, 'name' => 'email', 'id' => 'email-input');
+                            echo form_input($params); ?>
+                            <label class="form-label" for="email-input">Email</label>
+                            <?= validation_show_error('email') ?>
                         </div>
 
-                        <div class="form-outline mb-4">
-                            <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
-                            <label class="form-label" for="typeEmailX-2">Email</label>
-                        </div>
-
-                        <div class="form-outline mb-4">
-                            <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
-                            <label class="form-label" for="typePasswordX-2">Mot de passe</label>
+                        <!-- Password input -->
+                        <div class="form-floating mb-4" data-mdb-input-init>
+                            <?php $params = array('class' => 'form-control', 'value' => set_value('password'), 'required' => true, 'name' => 'password', 'id' => 'password-input');
+                                echo form_password($params); ?>
+                            <label class="form-label" for="password-input">Mot de passe</label>
+                            <?= validation_show_error('password') ?>
                         </div>
 
                         <!-- Checkbox -->
-                        <div class="form-check d-flex justify-content-start mb-4">
-                            <input class="form-check-input" type="checkbox" id="form1Example3" />
-                            <label class="form-check-label" for="form1Example3" style="margin-left: 5px!important;">Se souvenir</label>
+                        <div class="form-check d-flex justify-content-center mb-4">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                            <label class="form-check-label" for="form2Example33">
+                                Se souvenir
+                            </label>
                         </div>
 
-                        <button class="btn btn-primary btn-lg px-5" type="submit">Se connecter</button>
-                        <hr class="mt-4">
-                        <p class="pb-lg-2"><a class="text-muted" href="#">Mot de passe oublié ? </a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-0"></div>
+                        <?php if (session()->getFlashdata('error') !== NULL)
+                        {
+                            echo '<div class="mt-4 alert alert-danger" role="alert">'.session()->getFlashdata('error').'</div>';
+                        }
+                        ?>
 
+                        <!-- Submit button -->
+                        <?php $data = array('class' => 'btn btn-primary btn-block mb-4', 'name' => 'submit');
+                            echo form_submit($data, 'Se connecter'); ?>
+
+                        <!-- Other buttons -->
+                        <div class="text-center">
+                            <p><a href="javascript:void(0)">Mot de passe oublié ?</a></p>
+                            <hr class="mx-auto" style="width: 320px;">
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-google"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-github"></i>
+                            </button>
+                        </div>
+                    <?php echo form_close(); ?>
+                </div>
+                <div class="col-sm-0 col-lg-3"></div>
+            </div>
         </div>
     </div>
 </section>
+<!-- Section: Design Block -->
