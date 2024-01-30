@@ -1,49 +1,40 @@
-<!-- Section: Design Block -->
-
-<div class="col m4 s12">
-    <p class="range-field">
-        <input type="checkbox" id="{{keyword.id}}" name="{{keyword.title}}" class="filled-in"/>
-        <label for="{{keyword.id}}">{{keyword.title}}</label>
-        <input type="range" min="0" max="100"/>
-    </p>
-</div>
-
-<section class="text-center">
+<section class="center-align" style="height: 100%;">
     <!-- Background image -->
-    <div class="p-5 bg-image" style="
+    <div class="p-5" style="
         background-image: url('https://www-iut.univ-lehavre.fr/wp-content/uploads/2020/02/cropped-DSC_0279-1-1.jpg');
-        height: 300px;"></div>
-    <!-- Background image -->
+        height: 300px; width: 100%; object-fit: cover; overflow: clip; background-position: center center;"></div>
 
-    <div class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: -90px; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px);">
-        <div class="card-body py-5 px-md-5">
-            <div class="row d-flex justify-content-center">
-                <div class="col-sm-0 col-lg-3"></div>
-                <div class="col-sm-12 col-lg-6">
-                    <h2 class="fw-bold mb-5">Connexion</h2>
-                    <?php echo form_open('signin'); ?>
+    <div style="padding: 0 100px;">
+        <div class="card z-depth-5" style="margin-top: -110px; background: hsla(0, 0%, 100%, 0.8)!important;
+            backdrop-filter: blur(30px)!important; border-radius: 8px;">
+            <div class="card-content py-5 px-md-5">
+                <div class="row" style="display: flex; justify-content: center;">
+                    <div class="col s0 m3"></div>
+                    <div class="col s12 m6">
+                        <h3 style="font-weight: 500;">Connexion</h3>
+                        <?php echo form_open('signin'); ?>
 
                         <!-- Email input -->
-                        <div class="form-floating mb-4" data-mdb-input-init>
-                            <?php $params = array('class' => 'form-control', 'value' => set_value('email'), 'required' => true, 'name' => 'email', 'id' => 'email-input');
-                            echo form_input($params); ?>
-                            <label class="form-label" for="email-input">Email</label>
+                        <div class="input-field">
+                            <label for="email-input">Email</label>
+                            <?php $params = array('class' => 'validate', 'value' => set_value('email'), 'required' => true, 'name' => 'email', 'id' => 'email-input');
+                                echo form_input($params); ?>
                             <?= validation_show_error('email') ?>
                         </div>
 
                         <!-- Password input -->
-                        <div class="form-floating mb-4" data-mdb-input-init>
-                            <?php $params = array('class' => 'form-control', 'value' => set_value('password'), 'required' => true, 'name' => 'password', 'id' => 'password-input');
+                        <div class="input-field">
+                            <?php $params = array('class' => 'validate', 'value' => set_value('password'), 'required' => true, 'name' => 'password', 'id' => 'password-input');
                                 echo form_password($params); ?>
-                            <label class="form-label" for="password-input">Mot de passe</label>
+                            <label for="password-input">Mot de passe</label>
                             <?= validation_show_error('password') ?>
                         </div>
 
-                        <!-- Checkbox -->
-                        <div class="form-check d-flex justify-content-center mb-4">
-                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                            <label class="form-check-label" for="form2Example33">
-                                Se souvenir
+                        <!-- Remember me button -->
+                        <div>
+                            <label>
+                                <input type="checkbox" checked="checked" />
+                                <span>Se souvenir</span>
                             </label>
                         </div>
 
@@ -54,34 +45,19 @@
                         ?>
 
                         <!-- Submit button -->
-                        <?php $data = array('class' => 'btn btn-primary btn-block mb-4', 'name' => 'submit');
+                        <?php $data = array('class' => 'btn', 'name' => 'submit', 'style' => 'margin: 16px 0;');
                             echo form_submit($data, 'Se connecter'); ?>
 
-                        <!-- Other buttons -->
+                        <!-- Forgot password button -->
                         <div class="text-center">
+                            <hr style="max-width: 250px; margin-bottom: 16px;">
                             <p><a href="javascript:void(0)">Mot de passe oublié ?</a></p>
-                            <hr class="mx-auto" style="width: 320px;">
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-google"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-github"></i>
-                            </button>
                         </div>
-                    <?php echo form_close(); ?>
+                        <?php echo form_close(); ?>
+                    </div>
+                    <div class="col s0 m3"></div>
                 </div>
-                <div class="col-sm-0 col-lg-3"></div>
             </div>
         </div>
     </div>
 </section>
-<!-- Section: Design Block -->

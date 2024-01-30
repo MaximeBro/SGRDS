@@ -5,11 +5,11 @@
         <meta charset="utf-8" />
         <title>Connexion</title>
 
-        <link type="text/css" rel="stylesheet" href="/assets/css/materialize.min.css"  media="screen,projection"/>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-        <script src="/assets/js/materialize.min.js" type="script/js"></script>
-        <script src="assets/js/jquery.min.js"></script>
+        <link href="/assets/css/login.css" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
