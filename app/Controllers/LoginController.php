@@ -21,22 +21,20 @@ class LoginController extends BaseController
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
 
-        $data = $userModel->where('email', $email)->first();
+        $data = $userModel->where('emailutilisateur', $email)->first();
 
         if ($data) {
-            $pass = $data['password'];
-            $authenticatePassword = password_verify($password, $pass);
-            if($authenticatePassword) {
-                $ses_data = [
-                    'id' => $data['id'],
-                    'name' => $data['name'],
-                    'email' => $data['email'],
-                    'isLoggedIn' => TRUE
-                ];
+            $pass = $data['mdputilisateur'];
+            if($password === $pass) {
+                $ses_data = ['id' => $data['idutilisateur'],
+                            'name' => $data['prenomutilisateur'].' '.$data['nomutilisateur'],
+                            'email' => $data['emailutilisateur'],
+                            'isLoggedIn' => TRUE];
+
                 $session->set($ses_data);
                 return redirect()->to('/accueil');
             } else {
-                $session->setFlashdata('error', 'Password incorrect.');
+                $session->setFlashdata('error', 'Mot de passe incorrect.');
                 return redirect()->to('/');
             }
         } else {
