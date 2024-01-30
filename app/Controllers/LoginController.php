@@ -29,6 +29,7 @@ class LoginController extends BaseController
                 $ses_data = ['id' => $data['idutilisateur'],
                             'name' => $data['prenomutilisateur'].' '.$data['nomutilisateur'],
                             'email' => $data['emailutilisateur'],
+                            'role' => $data['role'],
                             'isLoggedIn' => TRUE];
 
                 $session->set($ses_data);

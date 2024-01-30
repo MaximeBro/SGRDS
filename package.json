@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@material/web": "^1.2.0",
     "mdb-ui-kit": "^7.1.0"
   }
 }

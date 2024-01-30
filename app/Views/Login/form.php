@@ -1,4 +1,13 @@
 <!-- Section: Design Block -->
+
+<div class="col m4 s12">
+    <p class="range-field">
+        <input type="checkbox" id="{{keyword.id}}" name="{{keyword.title}}" class="filled-in"/>
+        <label for="{{keyword.id}}">{{keyword.title}}</label>
+        <input type="range" min="0" max="100"/>
+    </p>
+</div>
+
 <section class="text-center">
     <!-- Background image -->
     <div class="p-5 bg-image" style="
