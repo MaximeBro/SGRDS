@@ -5,19 +5,15 @@
 *.asp
 *.cer
 *.csr
-*.css
 *.htm
-*.html
-*.js
 *.jsp
-*.php
 *.rss
 *.wasm
 *.wat
 *.xhtml
 
 # End of https://www.toptal.com/developers/gitignore/api/web
-writable/
+writable/cache
 
 .idea/
 
