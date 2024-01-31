@@ -20,16 +20,16 @@
                     <a href="#!" class="brand-logo"><img src="/assets/images/logos/logo-iut.png" style="height:58px !important;"></a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="#">Voir les rattrapages</a></li>
-                        <li><a href="#">Saisir un rattrapage</a></li>
+                        <li><a href="/accueil">Voir les rattrapages</a></li>
+                        <li><a href="/rattrapage">Saisir un rattrapage</a></li>
                         <li><a class="waves-effect waves-light btn">Déconnexion</a></li>
                     </ul>
                 </div>
             </nav>
 
             <ul class="sidenav" id="mobile-demo">
-                <li><a href="#">Voir les rattrapages</a></li>
-                <li><a href="#">Saisir un rattrapage</a></li>
+                <li><a href="/accueil">Voir les rattrapages</a></li>
+                <li><a href="/rattrapage">Saisir un rattrapage</a></li>
                 <li><a class="waves-effect waves-light btn">Déconnexion</a></li>
             </ul>
         </header>

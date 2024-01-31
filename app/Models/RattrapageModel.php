@@ -2,12 +2,29 @@
     namespace App\Models;
     use CodeIgniter\Model;
 
-    class RattrapageModel extends CI_Model 
+    class RattrapageModel extends Model
     {
-        public function insert_rattrapage($data) 
+        protected $table = 'rattrapage';
+        protected $allowedFields = [
+                                    'daterattrapage', 
+                                    'typerattrapage', 
+                                    'dureerattrapage', 
+                                    'commentairerattrapage',
+                                    'semestre'
+                                ];
+        
+        public function insert_rattrapage() 
         {
-            $this->db->insert('rattrapage', $data);
-            return $this->db->insert_id();
+            $request = \Config\Services::request();
+            $data = [
+                'daterattrapage' => $request->getPost('inputDate'),
+                'typerattrapage' => $request->getPost('selectType'),
+                'dureerattrapage' => $request->getPost('selectDuree'),
+                'commentairerattrapage' => $request->getPost('txtCommentaire'),
+                'semestre' => $request->getPost('selectSemestre'),
+            ];
+
+            $this->db->table($this->table)->insert($data);
         }
 
         public function delete_rattrapage($id)
