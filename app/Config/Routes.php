@@ -10,3 +10,4 @@ $routes->get('/', 'LoginController::index');
 $routes->post('/signin', 'LoginController::loginAuth');
 $routes->get('/accueil', 'PlanningController::index');
 $routes->get('/rattrapage', 'RattrapageController::index');
+$routes->get('/saisieabsents', 'SaisieAbsentsController::index');
