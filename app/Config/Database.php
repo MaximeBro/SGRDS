@@ -25,11 +25,11 @@ class Database extends Config
      * The default database connection.
      */
     public array $default = [
-        'DSN'          => 'Postgre://ba210404:Bebra501@woody.iut.univ-lehavre.fr:5432',
-        'hostname'     => 'woody.iut.univ-lehavre.fr',
-        'username'     => 'ba210404',
-        'password'     => 'Bebra501',
-        'database'     => 'ba210404',
+        'DSN'          => '',
+        'hostname'     => 'localhost',
+        'username'     => 'postgres',
+        'password'     => '5555',
+        'database'     => 'CI4',
         'DBDriver'     => 'Postgre',
         'DBPrefix'     => '',
         'pConnect'     => false,
@@ -41,7 +41,7 @@ class Database extends Config
         'compress'     => false,
         'strictOn'     => false,
         'failover'     => [],
-        'port'         => 3306,
+        'port'         => 5432,
         'numberNative' => false,
     ];
 

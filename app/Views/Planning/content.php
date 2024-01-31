@@ -14,23 +14,20 @@
 <section style="background-color: #eee; padding-top: 16px;">
     <div class="container">
         <div class="row">
-            <div class="col s4 offset-s4">
+            <div class="col s12 m12 l6 offset-l2">
                 <div class="input-field" style="margin-right: 16px;">
                     <select>
                         <option disabled selected>Sélectionner une ressource</option>
-                        <option value="1">R5.03 Développement efficace</option>
-                        <option value="2">R6.02 Communication</option>
-                        <option value="3">S3</option>
-                        <option value="3">S4</option>
-                        <option value="3">S5</option>
-                        <option value="3">S6</option>
+                        <?php foreach($ressources as $ressource): ?>
+                            <option value="<?=$ressource['idressource']?>"><?=$ressource['nomressource']?></option>
+                        <?php endforeach; ?>
                     </select>
                     <label>Ressource</label>
                 </div>
             </div>
 
-            <div class="col s4">
-                <div class="input-field" style="margin-left: 16px;">
+            <div class="col s12 m12 l4">
+                <div class="input-field">
                     <select>
                         <option disabled selected>Sélectionner un semestre</option>
                         <option value="1">S1</option>
