@@ -7,7 +7,6 @@
         public function insert_rattrapage($data) 
         {
             $this->db->insert('rattrapage', $data);
-
             return $this->db->insert_id();
         }
 
