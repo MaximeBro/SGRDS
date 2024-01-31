@@ -12,3 +12,4 @@ $routes->get('/accueil', 'PlanningController::index');
 $routes->post('/accueil/filter', 'PlanningController::filter');
 
 $routes->get('/rattrapage', 'RattrapageController::index');
+$routes->post('/rattrapage/traitement', 'RattrapageController::traitement');
