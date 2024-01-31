@@ -1,8 +1,9 @@
-DROP TABLE utilisateur CASCADE;
-DROP TABLE rattrapage CASCADE;
-DROP TABLE etudiant CASCADE;
-DROP TABLE rattrapage_etudiant CASCADE;
-DROP TABLE utilisateur_rattrapage CASCADE;
+DROP TABLE if exists utilisateur CASCADE;
+DROP TABLE if exists ressource CASCADE;
+DROP TABLE if exists rattrapage CASCADE;
+DROP TABLE if exists etudiant CASCADE;
+DROP TABLE if exists rattrapage_etudiant CASCADE;
+DROP TABLE if exists utilisateur_rattrapage CASCADE;
 
 -- Table pour les utilisateurs (directeur des études, enseignants)
 CREATE TABLE utilisateur (
@@ -14,6 +15,12 @@ CREATE TABLE utilisateur (
     role VARCHAR(20) NOT NULL -- 'directeur' ou 'enseignant'
 );
 
+-- Table pour les ressources
+CREATE TABLE ressource (
+    idRessource SERIAL PRIMARY KEY,
+    nomRessource TEXT NOT NULL
+);
+
 -- Table pour les rattrapages
 CREATE TABLE rattrapage (
     idRattrapage SERIAL PRIMARY KEY,
@@ -22,8 +29,8 @@ CREATE TABLE rattrapage (
     dureeRattrapage INT NOT NULL, -- Durée en minutes
     commentaireRattrapage TEXT,
     semestre TEXT NOT NULL,
-    ressource TEXT NOT NULL,
     annee VARCHAR(4) NOT NULL,
+    idRessource INT REFERENCES ressource(idRessource),
     idEnseignant INT REFERENCES utilisateur(idUtilisateur)
 );
 
