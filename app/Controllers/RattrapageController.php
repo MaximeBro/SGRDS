@@ -77,6 +77,10 @@
                 ];
                 $rattrapageEtudiantModel->insert_etudiants($data);
             }
+            
+            if ($this->request->getPost('cbMail')) {
+                $this->sendMail($selectedEtudiants, $this->request->getPost('selectProfesseur'));
+            }            
 
             return redirect('/accueil');
         }
@@ -88,6 +92,50 @@
             echo view('common/header');
             echo view('RattrapageView', ['id' => $id]);
             echo view('common/footer');
+        }
+
+        public function sendMail($selectedEtudiants, $profConcerne)
+        {
+            var_dump($profConcerne);
+            $session = \Config\Services::session();
+
+            $modele_user = new UserModel();
+            $mailProf = $modele_user->getMailById($profConcerne);
+
+            $email = \Config\Services::email();
+
+            $email->setFrom('');
+            $email->setTo($mailProf);
+
+            $etudiantModel = new EtudiantModel();
+            foreach($selectedEtudiants as $id)
+            {
+                $etudiants[$id] = $etudiantModel->getEtudiantById($id);
+            }
+
+            $message = 'Bonjour, voici la liste des élèves dont leur absence a été justifiée :<ul> ';
+            foreach ($etudiants as $etudiant) {
+                $message .= '<li>'.$etudiant['nometudiant'].' '.$etudiant['prenometudiant'].'</li>';
+            }
+            $message .= '</ul><br/>Cordialement';
+            
+            if(count($selectedEtudiants) > 0)
+                $email->setSubject('Absences justifiées');
+            else
+                $email->setSubject('Abence justifiée');
+
+            var_dump($message);
+
+            $email->setMessage($message);
+
+            if($email->send())
+            {
+                $session->setFlashdata('success', 'Email envoyé avec succès.');
+            }
+            else
+            {
+                $session->setFlashdata('error', 'Erreur lors de l\'envoi de l\'email.');
+            }
         }
     }
 ?>
