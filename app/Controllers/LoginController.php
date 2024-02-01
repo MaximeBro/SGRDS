@@ -5,7 +5,7 @@ use App\Models\UserModel;
 
 class LoginController extends BaseController
 {
-    public function index(): void
+    public function index()
     {
         helper(['form']);
 

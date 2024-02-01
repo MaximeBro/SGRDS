@@ -26,6 +26,10 @@
             echo view('common/footer');
         }
 
+        public function saisie($semestre, $idressource, $idEtudiants) {
+
+        }
+
         public function traitement() 
         {
             $rattrapageModel = new RattrapageModel();
@@ -42,7 +46,7 @@
                 $rattrapageEtudiantModel->insert_etudiants($data);
             }
 
-            return redirect()->to('/accueil');
+            return redirect('/accueil');
         }
 
         public function edit($id): void

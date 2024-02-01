@@ -22,10 +22,9 @@ class RattrapageEtudiantModel extends Model
         return $this->insert_id();
     }
 
-    public function delete_rattrapage($id)
+    public function deleteById($id)
     {
-        $this->where('idrattrapage', $id);
-        $this->delete('rattrapage');
+        return $this->builder()->where('idrattrapage', $id)->delete();
     }
 
     public function getEtudiantsByRattrapage($id) {

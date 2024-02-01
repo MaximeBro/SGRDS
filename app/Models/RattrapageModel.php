@@ -34,10 +34,13 @@
             return $this->db->insertID();
         }
 
-        public function delete_rattrapage($id)
+        public function deleteById($id)
         {
-            $this->where('idrattrapage', $id);
-            $this->delete('rattrapage');
+            return $this->builder()->where('idrattrapage', $id)->delete();
+        }
+
+        public function getById($id) {
+            return $this->where('idrattrapage', $id)->first();
         }
 
         public function getByRessource($ressource) {

@@ -19,9 +19,11 @@ class PlanningController extends BaseController
         helper(['form']);
         $data = $this->loadViewData();
 
-        echo view('common/header');
-        echo view('Planning/content', $data);
-        echo view('common/footer');
+        if($this->isLoggedIn()) {
+            echo view('common/header');
+            echo view('Planning/content', $data);
+            echo view('common/footer');
+        }
     }
 
     private function loadViewData($ressource = null, $semestre = null): array
@@ -80,8 +82,36 @@ class PlanningController extends BaseController
         $selectedSemestre = $this->request->getVar('selectedSemestre');
         $data = $this->loadViewData($selectedRessource, $selectedSemestre);
 
-        echo view('common/header');
-        echo view('Planning/content', $data);
-        echo view('common/footer');
+        if($this->isLoggedIn()) {
+            echo view('common/header');
+            echo view('Planning/content', $data);
+            echo view('common/footer');
+        }
+    }
+
+    public function isLoggedIn()
+    {
+        $session = \Config\Services::session();
+        if($session->get('isLoggedIn') === FALSE) {
+            return redirect('/');
+        }
+
+        return true;
+    }
+
+    public function edit($id) {
+
+    }
+
+    public function delete($id): \CodeIgniter\HTTP\RedirectResponse
+    {
+        $rattrapageModel = new RattrapageModel();
+        $rattrapageEtudiantModel = new RattrapageEtudiantModel();
+
+        $rattrapage = $rattrapageModel->getById($id);
+        $rattrapageEtudiantModel->deleteById($rattrapage['idrattrapage']);
+        $rattrapageModel->deleteById($rattrapage['idrattrapage']);
+
+        return redirect()->to('/accueil');
     }
 }

@@ -18,7 +18,7 @@ class AbsenceModel extends Model {
         $data = [
             'daterattrapage' => $request->getPost('inputDate'),
             'semestre' => $request->getPost('selectSemestre'),
-            'idressource' => $request->getPost('selectRessource'),
+            'idressource' => $request->getPost('selectRessource')
         ];
 
         $this->db->table($this->table)->insert($data);

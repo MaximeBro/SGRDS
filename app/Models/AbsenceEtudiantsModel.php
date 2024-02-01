@@ -10,4 +10,8 @@ class AbsenceEtudiantsModel extends Model {
         'idabsence',
         'idetudiant',
     ];
+
+    public function getEtudiantsById($id) {
+        return $this->select('idetudiant')->where('idabsence', $id)->findAll();
+    }
 }
