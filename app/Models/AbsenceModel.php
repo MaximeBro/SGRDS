@@ -2,22 +2,17 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class UserRattrapageModel extends Model {
-    protected $table = 'utilisateur_rattrapage';
+class AbsenceModel extends Model {
+    protected $table = 'absence';
 
     protected $allowedFields = [
-        'idutilisateur',
-        'idrattrapage',
+        'idabsence',
         'daterattrapage',
-        'horairerattrapage',
-        'typerattrapage',
-        'sallerattrapage',
         'semestre',
-        'commentaire',
         'idressource'
     ];
 
-    public function insert_rattrapage()
+    public function insert_absence()
     {
         $request = \Config\Services::request();
         $data = [
@@ -27,11 +22,7 @@ class UserRattrapageModel extends Model {
         ];
 
         $this->db->table($this->table)->insert($data);
-    }
 
-    public function getRessources()
-    {
-        $query = $this->db->query('SELECT * FROM ressource;');
-        return $query->getResultArray();
+        return $this->db->insertID();
     }
 }
