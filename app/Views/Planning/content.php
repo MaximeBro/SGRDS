@@ -74,7 +74,13 @@
                                     <?= $linked_resources[$rattrapage['idressource']]['nomressource'] ?>
                                 <?php endif; ?>
                             </td>
-                            <td>élèves</td>
+                            <td>
+                                <?php if (isset($linked_students) && isset($linked_students[$rattrapage['idrattrapage']])): ?>
+                                    <?php foreach($linked_students as $student): ?>
+                                        <?= var_dump($student) ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </td>
                             <td>
                                 <?= $rattrapage['commentairerattrapage'] ?>
                             </td>
@@ -82,7 +88,7 @@
                                 <?php
                                 if($session->get('role') === 'directeur')
                                 {
-                                    echo('<button type="button" class="btn-floating" style="margin-left: 16px;"><i class="fas fa-pen" aria-hidden="true"></i></button>');
+                                    echo('<button type="button" class="btn-floating" href="/accueil/edit/'.$rattrapage['idrattrapage'].'" style="margin-left: 16px;"><i class="fas fa-pen" aria-hidden="true"></i></button>');
                                 }
                                 ?>
                             </td>
