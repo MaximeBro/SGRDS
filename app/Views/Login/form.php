@@ -51,7 +51,7 @@
                         <!-- Forgot password button -->
                         <div class="text-center">
                             <hr style="max-width: 250px; margin-bottom: 16px;">
-                            <p><a href="javascript:void(0)">Mot de passe oublié ?</a></p>
+                            <p id="motDePasseOublie"> <a href="javascript:void(0)">Mot de passe oublié ?</a></p>
                         </div>
                         <?php echo form_close(); ?>
                     </div>
@@ -60,4 +60,13 @@
             </div>
         </div>
     </div>
+    <script> 
+        document.getElementById("motDePasseOublie").addEventListener("click", function() 
+        {
+            var email = document.getElementById("email-input").value;
+            window.location.href = "<?= base_url('/motDePasseOublie/') ?>" + email;
+        });
+
+
+    </script>
 </section>

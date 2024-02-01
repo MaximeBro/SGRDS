@@ -23,4 +23,9 @@ class UserModel extends Model {
     {
         return $this->where('nomutilisateur', $name)->first();
     }
+
+    public function modifierMotDePasse($email, $password)
+    {
+        $requete = $this->db->query("UPDATE utilisateur SET mdputilisateur = '$password' WHERE emailutilisateur = '$email'");
+    }
 }
