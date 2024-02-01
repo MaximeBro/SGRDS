@@ -25,3 +25,5 @@ $routes->post('/saisieabsents/traitement', 'AbsencesController::traitement');
 $routes->get('/session/destroy', 'MainController::disconnect');
 
 $routes->get('/rattrapage/saisie/(:any)/(:any)/(:any)', 'RattrapageController::saisie/$1/$2/$3');
+$routes->get('/etudiants', 'EtudiantController::index');
+$routes->post('/importCsvToDb', 'EtudiantController::importCsvToDb');

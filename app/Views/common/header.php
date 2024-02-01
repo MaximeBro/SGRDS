@@ -25,6 +25,12 @@
                         <?php
                         if($session->get('role') === 'directeur')
                         {
+                            echo('<li><a href="/ListeEtudiants">Importer des étudiants via un fichier CSV</a></li>');
+                        }
+                        ?>
+                        <?php
+                        if($session->get('role') === 'directeur')
+                        {
                             echo('<li><a href="/absences">Voir les absences</a></li>');
                         }
                         ?>
