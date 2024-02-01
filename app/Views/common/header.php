@@ -23,7 +23,7 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="/accueil">Voir les rattrapages</a></li>
                         <?php
-                        if($session->get('role') === 'enseignant')
+                        if($session->get('role') === 'directeur')
                         {
                             echo('<li><a href="/absences">Voir les absences</a></li>');
                         }

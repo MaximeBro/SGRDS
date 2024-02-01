@@ -21,7 +21,7 @@
                         <th>Ressource</th>
                         <th>Étudiants</th>
                         <?php
-                        if($session->get('role') === 'enseignant')
+                        if($session->get('role') === 'directeur')
                         {
                             echo('<th>Actions</th>');
                         }
@@ -43,9 +43,9 @@
                             <?php endif; ?>
                         </td>
                         <?php
-                        if($session->get('role') === 'enseignant')
+                        if($session->get('role') === 'directeur')
                         {
-                            echo('<td><a class="btn-floating tooltipped" data-position="bottom" data-tooltip="Saisir rattrapage" href="/rattrapage/saisie/'.$absence['semestre'].'/'.$absence['idressource'].'/'.$linked_etudiants[$absence['idabsence']].'"><i class="fas fa-plus" aria-hidden="true"></i></a></td>');
+                            echo('<td><a class="btn-floating tooltipped" data-position="bottom" data-tooltip="Saisir rattrapage" href="/rattrapage/saisie/'.$absence['semestre'].'/'.$absence['idressource'].'/'.$absence['idabsence'].'"><i class="fas fa-plus" aria-hidden="true"></i></a></td>');
                         }
                         ?>
                     </tr>
