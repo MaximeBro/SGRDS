@@ -24,12 +24,11 @@ CREATE TABLE ressource (
 -- Table pour les rattrapages
 CREATE TABLE rattrapage (
     idRattrapage SERIAL PRIMARY KEY,
-    dateRattrapage DATE NOT NULL,
+    dateRattrapage TIMESTAMP NOT NULL,
     typeRattrapage VARCHAR(50) NOT NULL, -- Exemple: 'Papier', 'Machine'
-    dureeRattrapage INT NOT NULL, -- Durée en minutes
+    dureeRattrapage FLOAT NOT NULL, -- Durée en minutes
     commentaireRattrapage TEXT,
     semestre TEXT NOT NULL,
-    annee VARCHAR(4) NOT NULL,
     idRessource INT REFERENCES ressource(idRessource),
     idEnseignant INT REFERENCES utilisateur(idUtilisateur)
 );
@@ -54,8 +53,47 @@ CREATE TABLE utilisateur_rattrapage (
     idEnseignant INT REFERENCES utilisateur(idUtilisateur),
     idRattrapage INT REFERENCES rattrapage(idRattrapage),
     dateRattrapage DATE NOT NULL,
-    horaireRattrapage TIME NOT NULL,
-    typeRattrapage VARCHAR(50) NOT NULL,
-    salleRattrapage VARCHAR(50),
-    commentaire TEXT
+    semestre TEXT NOT NULL,
+    idRessource INT REFERENCES ressource(idRessource)
 );
+
+
+insert into utilisateur(nomutilisateur, prenomutilisateur, emailutilisateur, mdputilisateur, role) values
+('Brochard', 'Maxime', 'maximebrochard@univ-lehavre.fr', '$2y$10$xyUwQa00vuA7qwtmwaeNRuWKHMDK75P9jVXAou.wMC2QWO2R5jOU.', 'directeur'),
+('ferrand', 'enzo', 'kzyord@gmail.com', '$2y$10$xyUwQa00vuA7qwtmwaeNRuWKHMDK75P9jVXAou.wMC2QWO2R5jOU.', 'enseignant'),
+('ferrandd', 'enzod', 'kzyordd@gmail.com', '$2y$10$xyUwQa00vuA7qwtmwaeNRuWKHMDK75P9jVXAou.wMC2QWO2R5jOU.', 'directeur'),
+('Philipe', 'Le Pivert', 'toto@gmail.com', '$2y$10$xyUwQa00vuA7qwtmwaeNRuWKHMDK75P9jVXAou.wMC2QWO2R5jOU.', 'directeur');
+
+INSERT INTO etudiant(nomEtudiant,prenomEtudiant,emailEtudiant) values
+('BROCHARD', 'Maxime', 'borchardmaxime@gmail.com'),
+('FERRAND', 'Enzo', 'kzyord76@gmail.com'),
+('BRAZEAU','Axel','axel.brazeau@gmail.com'),
+('LE PIVERT', 'Philippe', 'phililip@lepivert.plp');
+
+insert into ressource(nomressource) values
+('R5.01   Initiation au management d’une équipe de projet informatique    '),
+('R5.02   Projet Personnel et Professionnel'),
+('R5.03   Politique de communication'),
+('R5.04   Qualité algorithmique'),
+('R5.05   Programmation avancée'),
+('R5.06   Programmation multimédia'),
+('R5.07   Automatisation de la chaîne de production'),
+('R5.08   Qualité de développement'),
+('R5.09   Virtualisation avancée'),
+('R5.10   Nouveaux paradigmes de base de données'),
+('R5.11   Méthodes d’optimisation pour l’aide à la décision'),
+('R5.12   Modélisations mathématiques'),
+('R5.13   Économie durable et numérique'),
+('R5.14   Anglais'),
+
+('R6.01   Initiation à l''entrepreneuriat'),
+('R6.02   Droit du numérique et de la propriété intellectuelle'),
+('R6.03   Communication : organisation et diffusion de l''information'),
+('R6.04   Projet Personnel et Professionnel'),
+('R6.05   Développement avancé'),
+('R6.06   Maintenance applicative');
+
+INSERT INTO rattrapage(dateRattrapage,typeRattrapage,dureeRattrapage,commentaireRattrapage,semestre,idRessource,idEnseignant) VALUES
+('2024-01-31','Papier',2.5,'Ceci est un super rattrapage','S6',6,2),
+('2024-02-24','Machine',6.5,'C'' est Philippe qui offre','S5',1,2),
+('2024-03-04','Machine',1.0,'Les absents sont Logann Gouley et Enzo Ferrand, deux amants ayant triché','S6',8,2);
