@@ -55,5 +55,13 @@
             $array = array('idressource' => $ressource, 'semestre' => $semestre);
             return $this->where($array)->findAll();
         }
+
+        public function updateEtatById($id, $etat) {
+            $data = [
+                'etatrattrapage' => $etat,
+            ];
+
+            $this->builder()->where('idrattrapage', $id)->update($data);
+        }
     }
 ?>

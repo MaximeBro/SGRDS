@@ -160,6 +160,26 @@
             <label>Choisir le professeur concerné</label>
         </div>
 
+        <div class="input-field col s4">
+            <?php
+                $data = array(
+                    'id' => 'selectEtat',
+                    'name' => 'selectEtat',
+                    'placeholder' => 'Etat du rattrapage',
+                );
+
+                $options = array(
+                    'Programmé' => 'Programmé',
+                    'En cours' => 'En cours',
+                    'Neutralisé' => 'Neutralisé',
+                );
+
+                echo form_dropdown($data, $options, set_value('selectEtat'));
+                validation_show_error('selectEtat');
+            ?>
+            <label>Choisir l'état du rattrapage</label>
+        </div>
+
     </div>
 
     <div class="row">
