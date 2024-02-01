@@ -155,7 +155,6 @@
                         'id' => 'txtCommentaire',
                         'name' => 'txtCommentaire',
                         'class' => 'materialize-textarea',
-                        'required' => true,
                     );
                     echo form_textarea($data);
                     validation_show_error('txtCommentaire');

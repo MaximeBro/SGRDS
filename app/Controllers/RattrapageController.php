@@ -10,7 +10,8 @@
         
     class RattrapageController extends BaseController
     {
-        public function index() {
+        public function index(): void
+        {
             helper(["form"]);
             $modele_etudiant = new EtudiantModel();
             $modele_ressource = new RessourceModel();
@@ -21,14 +22,15 @@
             $data['ressources'] = $modele_ressource->findAll();
 
             echo view('common/header');
-            echo view('RattrapageView', ['etudiants' => $data['etudiants'], 
+            echo view('Rattrapage/SaisieRattrapage', ['etudiants' => $data['etudiants'],
                                          'enseignants' => $data['enseignants'],
                                          'ressources' => $data['ressources'],
                                          ]);
             echo view('common/footer');
         }
 
-        public function saisie($semestre, $idressource, $idabsence) {
+        public function saisie($semestre, $idressource, $idabsence): void
+        {
             helper(["form"]);
 
             $modele_user = new UserModel();
@@ -53,7 +55,7 @@
             $data['etudiants'] = $etudiants;
 
             echo view('common/header');
-            echo view('RattrapageView', ['etudiants' => $data['etudiants'], 
+            echo view('Rattrapage/SaisieRattrapage', ['etudiants' => $data['etudiants'],
                                          'enseignants' => $data['enseignants'],
                                          'ressources' => $data['ressources'],
                                          'semestre' => $data['semestre'],
@@ -62,7 +64,72 @@
             echo view('common/footer');
         }
 
-        public function traitement() 
+        public function edit($idrattrapage): void
+        {
+            helper(["form"]);
+
+            $modele_user = new UserModel();
+            $modele_ressource = new RessourceModel();
+            $modele_etudiant = new EtudiantModel();
+            $modele_rattrapageEtu = new RattrapageEtudiantModel();
+
+            $modele_rattrapage = new RattrapageModel();
+            $rattrapage = $modele_rattrapage->getById($idrattrapage);
+
+            $data['idrattrapage'] = $idrattrapage;
+            $data['etudiants'] = $modele_etudiant->findAll();
+            $data['enseignant'] = $modele_user->getUserById($rattrapage['idenseignant']);
+            $data['enseignants'] = $modele_user->getUsersByRole('enseignant');
+            $data['semestre'] = $rattrapage['semestre'];
+            $data['duree'] = $rattrapage['dureerattrapage'];
+            $data['savedDate'] = $rattrapage['daterattrapage'];
+            $data['ressources'] = $modele_ressource->findAll();
+            $data['idressource'] = $rattrapage['idressource'];
+            $data['type'] = $rattrapage['typerattrapage'];
+            $data['comment'] = $rattrapage['commentairerattrapage'];
+            $data['studentIDs'] = $modele_rattrapageEtu->getEtudiantsByRattrapage($idrattrapage);
+
+            echo view('common/header');
+            echo view('Rattrapage/EditionRattrapage', $data);
+            echo view('common/footer');
+        }
+
+        public function sauvegarder(): \CodeIgniter\HTTP\RedirectResponse
+        {
+            $id = $this->request->getVar('hiddenID');
+            $rattrapageModel = new RattrapageModel();
+
+            $rattrapageEtudiantModel = new RattrapageEtudiantModel();
+            $etudiantsToDel = $rattrapageEtudiantModel->getEtudiantsByRattrapage($id);
+            foreach($etudiantsToDel as $old) {
+                $rattrapageEtudiantModel->deleteByIdEtu($old['idetudiant']);
+            }
+
+            $rattrapageModel->deleteById($id);
+            $idRattrapage = $rattrapageModel->insert_rattrapage();
+
+            $rattrapageEtudiantModel = new RattrapageEtudiantModel();
+            $selectedEtudiants = $this->request->getVar('selectEtudiants');
+            foreach ($selectedEtudiants as $etudiant) {
+                $data = [
+                    'idrattrapage' => $idRattrapage,
+                    'idetudiant' => $etudiant,
+                    'estjustifie' => null,
+                ];
+                $rattrapageEtudiantModel->insert_etudiants($data);
+            }
+
+            if ($this->request->getPost('cbMail')) {
+                $this->sendMail($selectedEtudiants, $this->request->getPost('selectProfesseur'));
+            }
+
+            return redirect()->to('/accueil');
+
+
+            return redirect()->to('/accueil');
+        }
+
+        public function traitement(): \CodeIgniter\HTTP\RedirectResponse
         {
             $rattrapageModel = new RattrapageModel();
             $idRattrapage = $rattrapageModel->insert_rattrapage();
@@ -83,15 +150,6 @@
             }            
 
             return redirect()->to('/accueil');
-        }
-
-        public function edit($id): void
-        {
-            helper(["form"]);
-
-            echo view('common/header');
-            echo view('RattrapageView', ['id' => $id]);
-            echo view('common/footer');
         }
 
         public function sendMail($selectedEtudiants, $profConcerne)

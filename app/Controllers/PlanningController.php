@@ -100,10 +100,6 @@ class PlanningController extends BaseController
         return true;
     }
 
-    public function edit($id) {
-
-    }
-
     public function delete($id): \CodeIgniter\HTTP\RedirectResponse
     {
         $rattrapageModel = new RattrapageModel();
