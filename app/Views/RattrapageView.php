@@ -167,17 +167,10 @@
         <div class="row">
             <div class="input-field col s12">
                 <label for="cbMail">
-                    <?php
-                        $data = array(
-                            'id' => 'cbMail',
-                            'name' => 'cbMail',
-                            'type' => 'checkbox',
-                        );
-                        echo form_checkbox($data);
-                        validation_show_error('cbMail');
-                    ?>
+                    <input class="checkbox" type="checkbox" name="cbMail" id="cbMail"/>    
                     <span>Envoi d'un mail au professeur concerné avec la liste des étudiants absents (automatique)</span>
                 </label>
+                <?php validation_show_error('cbMail'); ?>
             </div>
         </div>
 

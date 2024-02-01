@@ -33,4 +33,8 @@ class UserModel extends Model {
     public function getUsersByRole($role) {
         return $this->where('role', $role)->findAll();
     }
+
+    public function getMailById($id) {
+        return $this->select('emailutilisateur')->where('idutilisateur', $id)->first();
+    }
 }
