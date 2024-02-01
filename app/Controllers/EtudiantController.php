@@ -8,8 +8,11 @@ class EtudiantController extends Controller
 {
     public function index()
     {
+        $model = new EtudiantModel();
+        $data['etudiants'] = $model->orderBy('idetudiant')->findAll();
+
         echo view('common/header');
-        echo view('ListeEtudiants');
+        echo view('ListeEtudiants', $data);
         echo view('common/footer');
     }
     public function importCsvToDb()
@@ -63,5 +66,12 @@ class EtudiantController extends Controller
             }
         }
         return redirect()->to('/accueil');         
+    }
+
+    public function delete($id)
+    {
+        $model = new EtudiantModel();
+        $model->deleteById($id);
+        return redirect()->to('/etudiants');
     }
 }

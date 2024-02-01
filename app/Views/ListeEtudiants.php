@@ -27,3 +27,26 @@
         </div>
     </div>
 </div>
+<div>
+    <?php if (!empty($etudiants) && is_array($etudiants)) : ?>
+        <table>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+            </tr>
+            <?php foreach ($etudiants as $etudiant) : ?>
+                <tr>
+                    <td><?= $etudiant['nometudiant']; ?></td>
+                    <td><?= $etudiant['prenometudiant']; ?></td>
+                    <td><?= $etudiant['emailetudiant']; ?></td>
+                    <td>
+                        <a href="/etudiants/supprimer/<?= $etudiant['idetudiant']; ?>" class="btn btn-danger btn-sm">Supprimer</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php else : ?>
+        <h3>Aucun étudiant.</h3>
+    <?php endif ?>
+</div>
