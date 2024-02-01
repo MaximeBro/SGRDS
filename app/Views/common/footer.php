@@ -1,17 +1,17 @@
-        <footer class="container">
-        <div class="row">
-            <div class="col">
-                <p class="text-left">IUT du Havre</p>
+        <footer class="page-footer teal" style="background-color : rgb(187,71,30) !important;">
+            <div class="container" style="display:flex; justify-content:space-between; align-items:center">
+                    <div>
+                        <p>IUT du Havre</p>
+                    </div>
+                    <div>
+                        <p>Département Informatique</p>
+                    </div>
+                    <div>
+                        <p>SGRDS</p>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                <p class="text-center">Département Informatique</p>
-            </div>
-            <div class="col">
-                <p class="text-right">SGRDS</p>
-            </div>
-        </div>
         </footer>
-
         <script src="/assets/js/script.js"></script>
     </body>
 </html>

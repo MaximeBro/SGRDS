@@ -42,7 +42,7 @@
                         echo form_dropdown($data, $options, '');
                     ?>
                 </div>
-                <?php $data = array('class' => 'btn', 'name' => 'submit', 'style' => 'margin: 16px 0;');
+                <?php $data = array('class' => 'btn', 'name' => 'submit', 'style' => 'margin: 16px 0; background-color: rgb(187,71,30);');
                     echo form_submit($data, 'Filtrer'); ?>
             </div>
         </div>
@@ -88,7 +88,7 @@
                                 <?php
                                 if($session->get('role') === 'directeur')
                                 {
-                                    echo('<button type="button" class="btn-floating" href="/accueil/edit/'.$rattrapage['idrattrapage'].'" style="margin-left: 16px;"><i class="fas fa-pen" aria-hidden="true"></i></button>');
+                                    echo('<button type="button" class="btn-floating" href="/accueil/edit/'.$rattrapage['idrattrapage'].'" style="margin-left: 16px; background-color: rgb(187,71,30);"><i class="fas fa-pen" aria-hidden="true"></i></button>');
                                 }
                                 ?>
                             </td>

@@ -48,9 +48,11 @@ class LoginController extends BaseController
         $mail = $email;
 
         $setEmail = \Config\Services::email();
+        $setEmail->setFrom('');
         $setEmail->setTo($mail);
 
         $password = $this->genererChaineAleatoire(8);
+        $hashPW = password_hash($password, PASSWORD_DEFAULT);
 
         $message = 'Bonjour, voici votre nouveau mot de passe : '.$password;
         $message .= '<br/>Veuillez le conserver car il reste impossible de le modifier.';
@@ -66,7 +68,7 @@ class LoginController extends BaseController
 
             $userModel = new UserModel();
 
-            $userModel->modifierMotDePasse($mail, $password);
+            $userModel->modifierMotDePasse($mail, $hashPW);
 
             return redirect()->to('/');
         }

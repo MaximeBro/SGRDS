@@ -174,7 +174,7 @@
 
         <div class="row" style="display:flex; justify-content:center; align-items:center;">
             <div class="input-field col s12">
-                <a class="waves-effect waves-light btn"><div><input type="submit" value="Confirmer"></div></a>
+                <a style="background-color: rgb(187,71,30);" class="waves-effect waves-light btn"><div><input type="submit" value="Confirmer"></div></a>
             </div>  
         </div>
 
