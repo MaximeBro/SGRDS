@@ -57,7 +57,8 @@ class PlanningController extends BaseController
             $linked_students[$idRattrapage] = $eleves;
 
             foreach($eleves as $eleve) {
-                $students_names[$eleve['idetudiant']] = $eleve;
+                $idEtudiant = $eleve['idetudiant'];
+                $students[$idEtudiant] = $etudiantModel->getEtudiantById($idEtudiant);
             }
         }
 
@@ -67,7 +68,7 @@ class PlanningController extends BaseController
 
         if(!empty($linked_resources)) { $data['linked_resources'] = $linked_resources; }
         if(!empty($linked_students)) { $data['linked_students'] = $linked_students; }
-        if(!empty($students_names)) { $data['students_names'] = $students_names; }
+        if(!empty($students)) { $data['students'] = $students; }
 
         return $data;
     }
@@ -75,7 +76,7 @@ class PlanningController extends BaseController
     public function filter(): void
     {
         helper(['form']);
-        $selectedRessource = $this->request->getVar('selectRessource');
+        $selectedRessource = $this->request->getVar('selectedRessource');
         $selectedSemestre = $this->request->getVar('selectedSemestre');
         $data = $this->loadViewData($selectedRessource, $selectedSemestre);
 

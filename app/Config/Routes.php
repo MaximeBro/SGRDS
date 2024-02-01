@@ -14,3 +14,8 @@ $routes->post('/accueil/edit/(:segment)', 'PlanningController::edit/$1');
 
 $routes->get('/rattrapage', 'RattrapageController::index');
 $routes->post('/rattrapage/traitement', 'RattrapageController::traitement');
+
+$routes->get('/motDePasseOublie/(:any)', 'LoginController::motDePasseOublie/$1');
+
+$routes->get('/saisieabsents', 'SaisieAbsentsController::index');
+$routes->post('/saisieabsents/traitement', 'SaisieAbsentsController::traitement');
