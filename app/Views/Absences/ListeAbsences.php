@@ -19,7 +19,7 @@
                         <th>Semestre</th>
                         <th>Date</th>
                         <th>Ressource</th>
-                        <th>Étudiants</th>
+                        <th>Étudiants (à justifier)</th>
                         <?php
                         if($session->get('role') === 'directeur')
                         {

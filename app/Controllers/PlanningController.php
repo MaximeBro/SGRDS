@@ -67,6 +67,7 @@ class PlanningController extends BaseController
         $data['session'] = $this->session;
         $data['ressources'] = $ressourceModel->getRessources();
         $data['rattrapages'] = $rattrapages;
+        $data['available_students'] = $etudiantModel->findAll();
 
         if(!empty($linked_resources)) { $data['linked_resources'] = $linked_resources; }
         if(!empty($linked_students)) { $data['linked_students'] = $linked_students; }
@@ -93,7 +94,7 @@ class PlanningController extends BaseController
     {
         $session = \Config\Services::session();
         if($session->get('isLoggedIn') === FALSE) {
-            return redirect('/');
+            return redirect()->to('/');
         }
 
         return true;

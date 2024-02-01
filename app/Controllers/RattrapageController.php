@@ -82,7 +82,7 @@
                 $this->sendMail($selectedEtudiants, $this->request->getPost('selectProfesseur'));
             }            
 
-            return redirect('/accueil');
+            return redirect()->to('/accueil');
         }
 
         public function edit($id): void

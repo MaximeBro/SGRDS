@@ -40,7 +40,7 @@
 
                         <?php if (session()->getFlashdata('error') !== NULL)
                         {
-                            echo '<div class="mt-4 alert alert-danger" role="alert">'.session()->getFlashdata('error').'</div>';
+                            echo '<div class="mt-4 alert" style="background-color: rgba(255, 100, 100, .8); padding: 6px 4px; border-radius: 4px; margin-top: 16px;">'.session()->getFlashdata('error').'</div>';
                         }
                         ?>
 

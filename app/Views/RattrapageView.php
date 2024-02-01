@@ -1,5 +1,7 @@
-<div>
-    <h1 style="text-align:center;">Saisie d'un rattrapage</h1>
+<div style="background-color: #eee; padding: 16px 50px 50px 50px; min-height: 100vh;">
+    <div class="row center-align">
+        <h1>Saisie d'un rattrapage</h1>
+    </div>
 
     <?php echo form_open('rattrapage/traitement'); ?>
         <div class="row">
@@ -9,14 +11,12 @@
                     $data = array(
                         'type' => 'datetime-local',
                         'name' => 'inputDate',
-                        'placeholder' => 'Choisir une date',
                         'id' => 'datePick12'
                     );
                     
                     echo form_input($data);
                     validation_show_error('inputDate');
                 ?>
-                <label>Date du DS</label>
             </div>
 
             <div class="input-field col s4">
@@ -27,17 +27,17 @@
                         'required' => true,
                     );
                     echo form_dropdown($data, array(
-                        '' => 'Type du DS',
+                        '' => 'Type du rattrapage',
                         'Papier' => 'Papier',
                         'Machine' => 'Machine',
                     ));
                     validation_show_error('selectType');
                 ?>
-                <label>Type DS</label>
+                <label>Type rattrapage</label>
             </div>
 
             <div class="input-field col s4">
-                <label>Durée du DS</label>
+                <label>Durée rattrapage</label>
                 <?php
                     $data = array(
                         'id' => 'selectDuree',
@@ -46,7 +46,7 @@
                         'class' => 'validate',
                         'min' => '1', 
                         'max' => '4',
-                        'placeholder' => 'Durée du DS',
+                        'placeholder' => 'Durée du rattrapage',
                         'required' => true,
                     );
                     echo form_input($data);
