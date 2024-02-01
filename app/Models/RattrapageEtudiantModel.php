@@ -27,6 +27,11 @@ class RattrapageEtudiantModel extends Model
         return $this->builder()->where('idrattrapage', $id)->delete();
     }
 
+    public function deleteByIdEtu($id)
+    {
+        return $this->builder()->where('idetudiant', $id)->delete();
+    }
+
     public function getEtudiantsByRattrapage($id) {
         return $this->select('idetudiant')->where('idrattrapage', $id)->findAll();
     }

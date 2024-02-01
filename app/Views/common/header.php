@@ -25,7 +25,7 @@
                         <?php
                         if($session->get('role') === 'directeur')
                         {
-                            echo('<li><a href="/etudiants">Importer des étudiants via un fichier CSV</a></li>');
+                            echo('<li><a href="/etudiants">Import CSV</a></li>');
                         }
                         ?>
                         <?php

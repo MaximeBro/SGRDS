@@ -15,6 +15,11 @@ class UserModel extends Model {
         'role'
     ];
 
+    public function getUserById($id)
+    {
+        return $this->where('idutilisateur', $id)->first();
+    }
+
     public function getUserByEmail($email)
     {
         return $this->where('emailutilisateur', $email)->first();
