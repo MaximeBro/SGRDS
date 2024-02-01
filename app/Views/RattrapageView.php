@@ -79,19 +79,24 @@
 
             <div class="input-field col s4">
                 <?php
+                    $selectedSemestre = isset($semestre) ? $semestre : '';
                     $data = array(
                         'id' => 'selectSemestre',
                         'name' => 'selectSemestre',
                         'placeholder' => 'Choisir le semestre',
+                        'selected' => $selectedSemestre,
                     );
-                    echo form_dropdown($data, array(
+
+                    $options = array(
                         'S1' => 'S1',
                         'S2' => 'S2',
                         'S3' => 'S3',
                         'S4' => 'S4',
                         'S5' => 'S5',
                         'S6' => 'S6',
-                    ));
+                    );
+
+                    echo form_dropdown($data, $options, set_value('selectSemestre'));
                     validation_show_error('selectSemestre');
                 ?>
                 <label>Choisir le semestre</label>
@@ -99,10 +104,12 @@
 
             <div class="input-field col s4">
                 <?php
+                    $selectedRessource = isset($idressource) ? $idressource : '';
                     $data = array(
                         'id' => 'selectRessource',
                         'name' => 'selectRessource',
                         'placeholder' => 'Choisir la ressource',
+                        'selected' => $selectedRessource,
                     );
 
                     $optionsRessources = array();

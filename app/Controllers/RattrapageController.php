@@ -6,6 +6,7 @@
     use App\Models\UserModel;
     use App\Models\EtudiantModel;
     use App\Models\RattrapageEtudiantModel;
+    use App\Models\AbsenceEtudiantsModel;
         
     class RattrapageController extends BaseController
     {
@@ -22,12 +23,43 @@
             echo view('common/header');
             echo view('RattrapageView', ['etudiants' => $data['etudiants'], 
                                          'enseignants' => $data['enseignants'],
-                                         'ressources' => $data['ressources'] ]);
+                                         'ressources' => $data['ressources'],
+                                         ]);
             echo view('common/footer');
         }
 
-        public function saisie($semestre, $idressource, $idEtudiants) {
+        public function saisie($semestre, $idressource, $idabsence) {
+            helper(["form"]);
 
+            $modele_user = new UserModel();
+            $modele_ressource = new RessourceModel();
+            $modele_absence_etudiants = new AbsenceEtudiantsModel();
+            $modele_etudiant = new EtudiantModel();
+
+            $data['enseignants'] = $modele_user->getUsersByRole('enseignant');
+
+            $data['semestre'] = $semestre;
+
+            $data['ressources'] = $modele_ressource->findAll();
+            $data['idressource'] = $idressource;
+            $etudiants = array();
+
+            // get all stutends from absenceetudiants with idabsence
+            $idEtuAbs = $modele_absence_etudiants->getEtudiantsById($idabsence);
+            foreach ($idEtuAbs as $idEtu) {
+                $etudiants[$idEtu['idetudiant']] = ($modele_etudiant->getEtudiantById($idEtu['idetudiant']));
+            }
+
+            $data['etudiants'] = $etudiants;
+
+            echo view('common/header');
+            echo view('RattrapageView', ['etudiants' => $data['etudiants'], 
+                                         'enseignants' => $data['enseignants'],
+                                         'ressources' => $data['ressources'],
+                                         'semestre' => $data['semestre'],
+                                         'idressource' => $data['idressource'],
+                                        ]);
+            echo view('common/footer');
         }
 
         public function traitement() 
