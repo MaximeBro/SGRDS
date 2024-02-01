@@ -19,4 +19,9 @@ class EtudiantModel extends Model {
     public function getMailById($id) {
         return $this->where('idetudiant', $id)->first();
     }
+
+    public function deleteById($id)
+    {
+        return $this->builder()->where('idetudiant', $id)->delete();
+    }
 }

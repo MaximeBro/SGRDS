@@ -26,4 +26,5 @@ $routes->get('/session/destroy', 'MainController::disconnect');
 
 $routes->get('/rattrapage/saisie/(:any)/(:any)/(:any)', 'RattrapageController::saisie/$1/$2/$3');
 $routes->get('/etudiants', 'EtudiantController::index');
+$routes->get('/etudiants/supprimer/(:any)', 'EtudiantController::delete/$1');
 $routes->post('/importCsvToDb', 'EtudiantController::importCsvToDb');
