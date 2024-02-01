@@ -4,6 +4,7 @@ DROP TABLE if exists rattrapage CASCADE;
 DROP TABLE if exists etudiant CASCADE;
 DROP TABLE if exists rattrapage_etudiant CASCADE;
 DROP TABLE if exists utilisateur_rattrapage CASCADE;
+DROP TABLE if exists absence CASCADE;
 
 -- Table pour les utilisateurs (directeur des études, enseignants)
 CREATE TABLE utilisateur (
@@ -27,6 +28,7 @@ CREATE TABLE rattrapage (
     dateRattrapage TIMESTAMP NOT NULL,
     typeRattrapage VARCHAR(50) NOT NULL, -- Exemple: 'Papier', 'Machine'
     dureeRattrapage FLOAT NOT NULL, -- Durée en minutes
+    etatRattrapage VARCHAR(50) CHECK (etatRattrapage IN ('En cours', 'Programmé', 'Neutralisé')) DEFAULT 'Programmé',
     commentaireRattrapage TEXT,
     semestre TEXT NOT NULL,
     idRessource INT REFERENCES ressource(idRessource),
@@ -49,13 +51,20 @@ CREATE TABLE rattrapage_etudiant (
 );
 
 -- Table pour les enseignants concernés par les rattrapages
-CREATE TABLE utilisateur_rattrapage (
-    idEnseignant INT REFERENCES utilisateur(idUtilisateur),
-    idRattrapage INT REFERENCES rattrapage(idRattrapage),
+CREATE TABLE absence (
+    idAbsence SERIAL PRIMARY KEY,
     dateRattrapage DATE NOT NULL,
     semestre TEXT NOT NULL,
     idRessource INT REFERENCES ressource(idRessource)
 );
+
+-- Table reliant une absence à plusieurs étudiants
+CREATE TABLE absence_etudiants (
+    idAbsenceEtudiant SERIAL PRIMARY KEY,
+    idAbsence INT REFERENCES absence(idAbsence),
+    idEtudiant INT REFERENCES etudiant(idEtudiant)
+);
+
 
 
 insert into utilisateur(nomutilisateur, prenomutilisateur, emailutilisateur, mdputilisateur, role) values
