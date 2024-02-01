@@ -12,6 +12,10 @@ class RattrapageEtudiantModel extends Model
         'estjustifie'
     ];
 
+    public function insert_etudiants($data) {
+        $this->db->table($this->table)->insert($data);
+    }
+
     public function insert_data($data)
     {
         $this->insert('utilisateur_rattrapage', $data);

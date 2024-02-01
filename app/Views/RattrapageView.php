@@ -7,11 +7,9 @@
             <div class="input-field col s4">
                 <?php
                     $data = array(
-                        'class' => '',
-                        'set_value' => set_value('inputDate'),
+                        'type' => 'datetime-local',
                         'name' => 'inputDate',
                         'placeholder' => 'Choisir une date',
-                        'type' => 'date',
                         'id' => 'datePick12'
                     );
                     
@@ -67,14 +65,14 @@
                         'multiple' => true,
                     );
 
-                    $optionsEtudiants = array('' => 'Choisir les étudiants');
+                    $optionsEtudiants = array();
 
                     foreach ($etudiants as $etudiant) {
                         $optionsEtudiants[$etudiant['idetudiant']] = $etudiant['nometudiant']. ' ' . $etudiant['prenometudiant'];
                     }
 
-                    echo form_dropdown($data, $optionsEtudiants, set_value('selectEtudiants'));
-                    validation_show_error('selectEtudiants');
+                    echo form_dropdown('selectEtudiants[]', $optionsEtudiants, set_value('selectEtudiants'), $data);
+                    validation_show_error('selectEtudiants[]');
                 ?>
                 <label>Etudiants concernés</label>
             </div>
@@ -107,7 +105,7 @@
                         'placeholder' => 'Choisir la ressource',
                     );
 
-                    $optionsRessources = array('' => 'Choisir la ressource');
+                    $optionsRessources = array();
 
                     foreach ($ressources as $ressource) {
                         $optionsRessources[$ressource['idressource']] = $ressource['nomressource'];
@@ -128,12 +126,14 @@
                         'name' => 'selectProfesseur',
                         'placeholder' => 'Professeur concerné',
                     );
-                    echo form_dropdown($data, array(
-                        '1' => 'Mr Legrix',
-                        '2' => 'Mr Ferrand',
-                        '3' => 'Mme Boukachour',
-                        '4' => 'Mme Nivet',
-                    ));
+
+                    $optionsEnseignants = array();
+
+                    foreach($enseignants as $enseignant) {
+                        $optionsEnseignants[$enseignant['idutilisateur']] = $enseignant['nomutilisateur'] . ' ' . $enseignant['prenomutilisateur'];
+                    }
+
+                    echo form_dropdown($data, $optionsEnseignants, set_value('selectProfesseur'));
                     validation_show_error('selectProfesseur');
                 ?>
                 <label>Choisir le professeur concerné</label>

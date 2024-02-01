@@ -24,10 +24,14 @@
                 'typerattrapage' => $request->getPost('selectType'),
                 'dureerattrapage' => $request->getPost('selectDuree'),
                 'commentairerattrapage' => $request->getPost('txtCommentaire'),
+                'idressource' => $request->getPost('selectRessource'),
+                'idenseignant' => $request->getPost('selectProfesseur'),
                 'semestre' => $request->getPost('selectSemestre'),
             ];
 
             $this->db->table($this->table)->insert($data);
+
+            return $this->db->insertID();
         }
 
         public function delete_rattrapage($id)

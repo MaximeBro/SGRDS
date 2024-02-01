@@ -29,4 +29,8 @@ class UserModel extends Model {
     {
         $requete = $this->db->query("UPDATE utilisateur SET mdputilisateur = '$password' WHERE emailutilisateur = '$email'");
     }
+    
+    public function getUsersByRole($role) {
+        return $this->where('role', $role)->findAll();
+    }
 }
