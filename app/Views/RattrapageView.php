@@ -66,12 +66,14 @@
                         'placeholder' => 'Choisir les étudiants',
                         'multiple' => true,
                     );
-                    echo form_dropdown($data, array(
-                        '1' => 'Adrien Decharrois',
-                        '2' => 'Maxime Brochard',
-                        '3' => 'Enzo Ferrand',
-                        '4' => 'Axel Brazeau',
-                    ));
+
+                    $optionsEtudiants = array('' => 'Choisir les étudiants');
+
+                    foreach ($etudiants as $etudiant) {
+                        $optionsEtudiants[$etudiant['idetudiant']] = $etudiant['nometudiant']. ' ' . $etudiant['prenometudiant'];
+                    }
+
+                    echo form_dropdown($data, $optionsEtudiants, set_value('selectEtudiants'));
                     validation_show_error('selectEtudiants');
                 ?>
                 <label>Etudiants concernés</label>
@@ -104,14 +106,14 @@
                         'name' => 'selectRessource',
                         'placeholder' => 'Choisir la ressource',
                     );
-                    echo form_dropdown($data, array(
-                        '1' => 'Maths',
-                        '2' => 'Français',
-                        '3' => 'SVT',
-                        '4' => 'Chimie',
-                        '5' => 'Philosophie',
-                        '6' => 'Brazo',
-                    ));
+
+                    $optionsRessources = array('' => 'Choisir la ressource');
+
+                    foreach ($ressources as $ressource) {
+                        $optionsRessources[$ressource['idressource']] = $ressource['nomressource'];
+                    }
+
+                    echo form_dropdown($data, $optionsRessources, set_value('selectRessource'));
                     validation_show_error('selectRessource');
                 ?>
                 <label>Choisir la ressource</label>

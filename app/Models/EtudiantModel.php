@@ -2,31 +2,36 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class EtudiantModel extends Model
-{
+class EtudiantModel extends Model {
     protected $table = 'etudiant';
 
     protected $allowedFields = [
-        'idetudiant',
-        'nometudiant',
-        'prenometudiant',
-        'emailetudiant'
+        'dateRattrapage',
+        'idRessource',
+        'semestreRattrapage',
+        'idEtudiant'
     ];
 
-    public function insert_data($data)
+    public function insert_rattrapage()
     {
-        $this->insert('utilisateur_rattrapage', $data);
-        return $this->insert_id();
-    }
+        $request = \Config\Services::request();
 
+        $data = [
+            'idetudiant' => $request->getPost('etudiants'),
+            'idressource' => $request->getPost('ressource'),
+            'daterattrapage' => $request->getPost('inputDate'),
+            'semestrerattrapage' => $request->getPost('semestre')
+        ];
+
+
+    }
     public function delete_rattrapage($id)
     {
         $this->where('idrattrapage', $id);
         $this->delete('rattrapage');
     }
-
     public function getEtudiantById($id) {
         return $this->where('idetudiant', $id)->first();
+
     }
 }
-?>
