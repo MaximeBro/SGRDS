@@ -67,7 +67,8 @@
             <table class="table table-striped highlight">
                 <thead>
                 <tr>
-                    <th class="center-align">État</th>
+                    <th class="center-align">Etat</th>
+                    <th class="center-align">Type</th>
                     <th>Date</th>
                     <th class="center-align">Semestre</th>
                     <th class="center-align">Ressource</th>
@@ -80,6 +81,16 @@
                 <tbody>
                 <?php foreach($rattrapages as $rattrapage): ?>
                     <tr>
+                        <?php
+                            $bgcolor = '';
+                            $color = '';
+                            switch($rattrapage['etatrattrapage']) {
+                                case 'Programmé' : $bgcolor = 'rgb(255,193,7)'; $color = 'rgb(65,58,64)'; break; // jaune 
+                                case 'En cours' : $bgcolor = 'rgb(40,167,69)'; $color = 'white'; break; // vert
+                                case 'Neutralisé' : $bgcolor = 'rgb(108,117,125)'; $color = 'white'; break; // gris
+                            }
+                        ?>
+                        <td style="background-color:<?php echo $bgcolor ?>;color:<?php echo $color ?>;"><?= $rattrapage['etatrattrapage'] ?></td>
                         <td><?= $rattrapage['typerattrapage'] ?></td>
                         <td><?= $rattrapage['daterattrapage'] ?></td>
                         <td class="center-align"><?= $rattrapage['semestre'] ?></td>

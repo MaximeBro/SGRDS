@@ -123,8 +123,7 @@
                 $this->sendMail($selectedEtudiants, $this->request->getPost('selectProfesseur'));
             }
 
-            return redirect()->to('/accueil');
-
+            $rattrapageModel->updateEtatById($idRattrapage, $this->request->getPost('selectEtat'));
 
             return redirect()->to('/accueil');
         }
