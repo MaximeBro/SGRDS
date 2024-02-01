@@ -10,15 +10,4 @@ class AbsenceEtudiantsModel extends Model {
         'idabsence',
         'idetudiant',
     ];
-
-    public function insert_absenceEtudiants()
-    {
-        $request = \Config\Services::request();
-        $data = [
-            'idetudiant' => $request->getPost('selectEtudiants[]'),
-
-        ];
-
-        $this->db->table($this->table)->insert($data);
-    }
 }
