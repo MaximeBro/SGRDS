@@ -2,45 +2,41 @@
     $(document).ready(function(){
         $('select').formSelect();
     });
+
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+    });
 </script>
 
-<section style="background-color: #eee; padding-top: 16px; min-height: 70vh;">
+<section style="background-color: #eee; padding-top: 16px; min-height: 100vh;">
     <div class="container">
         <div class="row">
             <?php echo form_open('/accueil/filter'); ?>
 
             <div class="col s12 m12 l6 offset-l2">
                 <div class="input-field">
-                    <?php
-                        $data = array('id' => 'selectedRessource', 'name' => 'selectedRessource');
-                        $options[''] = 'Selectionner une ressource';
-                        foreach($ressources as $ressource):
-                            $options[$ressource['idressource']] = $ressource['nomressource'];
-                        endforeach;
-
-                        echo form_dropdown($data, $options, '');
-                    ?>
-                    <label>Type DS</label>
+                    <select name="selectedRessource">
+                        <option disabled selected>Sélectionner une ressource</option>
+                        <?php foreach($ressources as $ressource): ?>
+                            <?= '<option value="'.$ressource['idressource'].'">'.$ressource['nomressource'].'</option>' ?>
+                        <?php endforeach; ?>
+                    </select>
+                    <label>Ressource</label>
                 </div>
             </div>
 
             <div class="col s12 m12 l4">
                 <div class="input-field">
-                    <?php
-                        $data = array('id' => 'selectedSemestre', 'name' => 'selectedSemestre');
-                        $options = array(
-                                '' => 'Sélectionner un semestre',
-                                'S1' => 'S1',
-                                'S2' => 'S2',
-                                'S3' => 'S3',
-                                'S4' => 'S4',
-                                'S5' => 'S5',
-                                'S6' => 'S6',
-                            );
-
-
-                        echo form_dropdown($data, $options, '');
-                    ?>
+                    <select name="selectedSemestre">
+                        <option disabled selected>Sélectionner un semestre</option>
+                        <option value="S1">S1</option>
+                        <option value="S2">S2</option>
+                        <option value="S3">S3</option>
+                        <option value="S4">S4</option>
+                        <option value="S5">S5</option>
+                        <option value="S6">S6</option>
+                    </select>
+                    <label>Semestre</label>
                 </div>
                 <?php $data = array('class' => 'btn', 'name' => 'submit', 'style' => 'margin: 16px 0; background-color: rgb(187,71,30);');
                     echo form_submit($data, 'Filtrer'); ?>
@@ -48,55 +44,64 @@
         </div>
 
         <?php echo form_close(); ?>
-        <div class="row" style="padding: 24px 0;">
-            <div class="col-12">
-                <table class="table table-striped highlight">
-                    <thead>
-                        <tr>
-                            <th>État</th>
-                            <th>Date</th>
-                            <th>Semestre</th>
-                            <th>Ressource</th>
-                            <th>Étudiants</th>
-                            <th>Commentaire</th>
-                            <th></th>
-                        </tr>
-                    </thead>
+    </div>
+    <div class="row" style="padding: 16px 50px; padding-bottom: 100px; overflow-x: auto;">
+        <div class="col-12" style="overflow-x: auto;">
+            <table class="table table-striped highlight">
+                <thead>
+                <tr>
+                    <th class="center-align">État</th>
+                    <th>Date</th>
+                    <th class="center-align">Semestre</th>
+                    <th class="center-align">Ressource</th>
+                    <th>Étudiants</th>
+                    <th>Commentaire</th>
+                    <th class="center-align">Actions</th>
+                </tr>
+                </thead>
 
-                    <tbody>
-                    <?php foreach($rattrapages as $rattrapage): ?>
-                        <tr>
-                            <td><?= $rattrapage['typerattrapage'] ?></td>
-                            <td><?= $rattrapage['daterattrapage'] ?></td>
-                            <td><?= $rattrapage['semestre'] ?></td>
-                            <td>
-                                <?php if (isset($linked_resources) && isset($linked_resources[$rattrapage['idressource']])): ?>
-                                    <?= $linked_resources[$rattrapage['idressource']]['nomressource'] ?>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if (isset($linked_students) && isset($linked_students[$rattrapage['idrattrapage']])): ?>
-                                    <?php foreach($linked_students as $student): ?>
-                                        <?= var_dump($student) ?>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?= $rattrapage['commentairerattrapage'] ?>
-                            </td>
-                            <td>
+                <tbody>
+                <?php foreach($rattrapages as $rattrapage): ?>
+                    <tr>
+                        <td><?= $rattrapage['typerattrapage'] ?></td>
+                        <td><?= $rattrapage['daterattrapage'] ?></td>
+                        <td class="center-align"><?= $rattrapage['semestre'] ?></td>
+                        <td>
+                            <?php if (isset($linked_resources) && isset($linked_resources[$rattrapage['idressource']])): ?>
+                                <?= $linked_resources[$rattrapage['idressource']]['nomressource'] ?>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?php if (isset($linked_students) && isset($linked_students[$rattrapage['idrattrapage']])): ?>
+                                <?php foreach($linked_students[$rattrapage['idrattrapage']] as $student): ?>
+                                    <?= $students[$student['idetudiant']]['nometudiant'] ?>
+                                    <?= $students[$student['idetudiant']]['prenometudiant'] ?>,<br>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?= $rattrapage['commentairerattrapage'] ?>
+                        </td>
+                        <td>
+                            <div style="display: flex; flex-direction: row;">
                                 <?php
                                 if($session->get('role') === 'directeur')
                                 {
-                                    echo('<button type="button" class="btn-floating" href="/accueil/edit/'.$rattrapage['idrattrapage'].'" style="margin-left: 16px; background-color: rgb(187,71,30);"><i class="fas fa-pen" aria-hidden="true"></i></button>');
+                                    echo('<a class="btn-floating tooltipped" data-position="bottom" data-tooltip="Éditer" href="/accueil/edit/'.$rattrapage['idrattrapage'].'" style="margin-left: 16px;"><i class="fas fa-pen" aria-hidden="true"></i></a>');
                                 }
                                 ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+                                <?php
+                                if($session->get('role') === 'directeur')
+                                {
+                                    echo('<a class="btn-floating tooltipped" data-position="bottom" data-tooltip="Supprimer" href="/accueil/delete/'.$rattrapage['idrattrapage'].'" style="margin-left: 16px;"><i class="fas fa-trash" aria-hidden="true"></i></a>');
+                                }
+                                ?>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </section>

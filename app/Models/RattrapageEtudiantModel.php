@@ -25,7 +25,7 @@ class RattrapageEtudiantModel extends Model
     }
 
     public function getEtudiantsByRattrapage($id) {
-        return $this->where('idrattrapage', $id)->findAll();
+        return $this->select('idetudiant')->where('idrattrapage', $id)->findAll();
     }
 }
 ?>
