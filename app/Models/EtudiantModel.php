@@ -15,4 +15,8 @@ class EtudiantModel extends Model {
     public function getEtudiantById($id) {
         return $this->where('idetudiant', $id)->first();
     }
+
+    public function getMailById($id) {
+        return $this->where('idetudiant', $id)->first();
+    }
 }
