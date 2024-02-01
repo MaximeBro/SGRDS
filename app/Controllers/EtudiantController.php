@@ -12,7 +12,7 @@ class EtudiantController extends Controller
         $data['etudiants'] = $model->orderBy('idetudiant')->findAll();
 
         echo view('common/header');
-        echo view('ListeEtudiants', $data);
+        echo view('Etudiants', $data);
         echo view('common/footer');
     }
     public function importCsvToDb()
