@@ -24,8 +24,7 @@ class LoginController extends BaseController
         $data = $userModel->where('emailutilisateur', $email)->first();
 
         if ($data) {
-            $pass = $data['mdputilisateur'];
-            if($password === $pass) {
+            if(password_verify($password, $data['mdputilisateur'])) {
                 $ses_data = ['id' => $data['idutilisateur'],
                             'name' => $data['prenomutilisateur'].' '.$data['nomutilisateur'],
                             'email' => $data['emailutilisateur'],

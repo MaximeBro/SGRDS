@@ -16,7 +16,7 @@
             'idressource',
             'idenseignant'];
 
-        public function insert_rattrapage($data) 
+        public function insert_rattrapage()
         {
             $request = \Config\Services::request();
             $data = [
